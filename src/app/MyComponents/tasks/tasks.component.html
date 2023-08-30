@@ -1,0 +1,22 @@
+<app-navigation></app-navigation>
+
+<div class="mx-auto p-8 max-w-3xl">
+  <h2 class="text-3xl font-bold mb-6">Tasks</h2>
+  <ul class="space-y-4">
+    <li *ngFor="let task of items$ | async" class="bg-white shadow-md rounded-lg p-6 flex items-center justify-between transition-transform transform hover:scale-105">
+      <span class="text-lg">{{ task.task }}</span>
+      <div class="space-x-2">
+        <button class="text-blue-500 hover:text-blue-600 transition-colors duration-300" (click)="populateInputForUpdate(task)">Update</button>
+        <button class="text-red-500 hover:text-red-600 transition-colors duration-300" (click)="deleteItem(task.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <h2 class="text-3xl font-bold mt-10 mb-4">{{ updateItemId ? 'Update' : 'Add' }} Task</h2>
+  <div class="flex space-x-4">
+    <input [(ngModel)]="newItemName" class="flex-1 py-3 px-4 border border-gray-300 rounded-lg transition-colors duration-300 focus:outline-none focus:border-blue-500" placeholder="Enter Task">
+    <button class="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors duration-300" (click)="addItem()">
+      {{ updateItemId ? 'Update' : 'Add' }}
+    </button>
+  </div>
+</div>
